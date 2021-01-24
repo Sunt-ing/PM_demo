@@ -1,5 +1,5 @@
-Date:2021-01-24 17:59:16
-all_elapsedTime:0.272
+Date:2021-01-24 20:04:29
+all_elapsedTime:0.154
 insSize:90
 --------------------- Query Pattern --------------------------
 v 0 4
