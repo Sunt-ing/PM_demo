@@ -10,3 +10,5 @@ change list:
 运行jar包：nohup java -jar target/PatternMiningDemo-0.0.1-SNAPSHOT.jar &
 进入前端目录：cd target
 运行前端服务：npm start
+
+
