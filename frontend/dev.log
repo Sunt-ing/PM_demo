@@ -1,0 +1,22 @@
+
+> pm@1.0.0 dev /root/PM_demo/frontend
+> webpack-dev-server --inline --progress --config build/webpack.dev.conf.js
+
+ WARNING  Compiled with 2 warnings8:59:24 PM
+
+ warning  in ./src/App.vue
+
+(Emitted value instead of an instance of Error) <el-col v-for="pie in pieChart[k]">: component lists rendered with v-for should have explicit keys. See https://vuejs.org/guide/list.html#key for more info.
+
+ @ ./src/App.vue 11:0-354
+ @ ./src/main.js
+ @ multi (webpack)-dev-server/client?http://localhost:8083 webpack/hot/dev-server ./src/main.js
+
+ warning  in ./src/App.vue
+
+(Emitted value instead of an instance of Error) <el-collapse-item v-for="k in graphData.length">: component lists rendered with v-for should have explicit keys. See https://vuejs.org/guide/list.html#key for more info.
+
+ @ ./src/App.vue 11:0-354
+ @ ./src/main.js
+ @ multi (webpack)-dev-server/client?http://localhost:8083 webpack/hot/dev-server ./src/main.js
+

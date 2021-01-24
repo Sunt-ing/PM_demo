@@ -1,0 +1,45 @@
+package com.dbg.patternmining.models.dataStructures;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map.Entry;
+
+import com.dbg.patternmining.models.CSP.Variable;
+
+public class oneEdgePatternHyperGraph {
+
+	private Variable[] variables;
+	private Query qry;
+	private int UB;
+
+	public oneEdgePatternHyperGraph(Graph graph, Query qry, int kthFreq) {
+		this.qry = qry;
+		UB = 0;
+		UBHyperGraph ub = new UBHyperGraph();
+		HashMap<Integer, HashMap<Integer, myNode>> supperNodeMap = ub.getOneEdgeSupperNodeList(graph, qry, kthFreq);
+		if (supperNodeMap != null) {
+			int min = supperNodeMap.get(0).size();
+			for (Entry<Integer, HashMap<Integer, myNode>> entry : supperNodeMap.entrySet()) {
+				if (min > entry.getValue().size()) {
+					min = entry.getValue().size();
+				}
+			}
+			UB = min;
+		}
+	}
+
+	
+	public Query getQuery()
+	{
+		return qry;
+	}
+
+	public Variable[] getVariables() {
+		return variables;
+	}
+	
+	public IntFrequency getUpperBound() {
+		// TODO Auto-generated method stub
+		return new IntFrequency(UB);
+	}
+}
