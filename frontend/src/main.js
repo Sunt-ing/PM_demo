@@ -7,7 +7,7 @@ import axios from 'axios'
 Vue.use(ElementUI)
 
 Vue.prototype.$axios = axios;
-axios.defaults.baseURL = 'http://10.20.123.55:23332/'
+axios.defaults.baseURL = 'http://10.20.113.8:23332/'
 // axios.defaults.timeout = 5000
 
 import Vue from 'vue'
