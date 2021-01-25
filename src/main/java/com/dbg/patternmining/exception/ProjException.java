@@ -1,14 +1,14 @@
-package com.dbg.patternmining.exception;
+// package com.dbg.patternmining.exception;
 
-/**
- * Created by gubaoer on 17/7/2.
- */
+// /**
+//  * Created by gubaoer on 17/7/2.
+//  */
 
 
-public class ProjException extends Exception {
+// public class ProjException extends Exception {
 
-    public ProjException(String message) {
-        super(message);
-    }
+//     public ProjException(String message) {
+//         super(message);
+//     }
 
-}
+// }

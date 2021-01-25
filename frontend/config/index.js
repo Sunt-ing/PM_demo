@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:23332/',   //這裡後台的地址模擬的，應該填寫真實的後台api
+        target: 'http://10.20.123.55:23332/',   //這裡後台的地址模擬的，應該填寫真實的後台api
         changOrigin: true,  //允許跨域
         pathRewrite: {
          '^/api': '' //請求的時候使用這個api就可以
@@ -21,7 +21,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '10.20.123.55', // can be overwritten by process.env.HOST
     port: 23333, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

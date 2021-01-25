@@ -31,16 +31,14 @@ public class MainController {
     HashMap<Integer, Node> nodeLabelMap = new HashMap<>();
     HashMap<Integer, String> linkLabelMap = new HashMap<>();
 
-    final FileConfig fileConfig;
-
-    public MainController(FileConfig fileConfig) {
-        this.fileConfig = fileConfig;
-    }
+    @Autowired
+    FileConfig fileConfig;
 
     @ResponseBody
     @RequestMapping(value = "/query", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String query(@RequestParam(value = "graph") String inputGraph,
                         @RequestParam(value = "dataset") int dataset) {
+        System.out.printf("In query %s, %d%n", inputGraph, dataset);
         InputWriter.writeGraph(fileConfig.getDatasetPath(), inputGraph);
         String[] s = new String[4];
         int kk = 0;
@@ -173,6 +171,7 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = "/sidebar", method = RequestMethod.GET)
     public String getSidebar(@RequestParam(value = "dataset") int dataset) {
+        System.out.printf("In getSidebar %d%n", dataset);
         String str = "";
         if (dataset == 1) {
             str = "{\"nodes\":[{\"id\":0,\"type\":\"State\"},{\"id\":1,\"type\":\"Branch\"}," +
@@ -197,6 +196,7 @@ public class MainController {
         }
         JSONObject result = JSONObject.parseObject(str);
         init(dataset);
+        System.out.printf("getSidebar %s%n", result.toJSONString());
         return result.toJSONString();
     }
 
@@ -303,11 +303,21 @@ public class MainController {
         }
         System.out.println("read virusnetwork.json finish");
         JSONObject jsonObject = JSON.parseObject(jsonContent, Feature.DisableSpecialKeyDetect);
-        JSONArray jsonArray = JSON.parseArray(jsonObject.get("@graph").toString());
-        System.out.println("parse virusnetwork.json finish");
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-            strMap.put(jsonObject1.get("@id").toString(), jsonObject1);
+        try {
+            long t0 = System.currentTimeMillis();
+            String str = jsonObject.get("@graph").toString();
+            long t1 = System.currentTimeMillis();
+            JSONArray jsonArray = JSON.parseArray(str);
+            long t2 = System.currentTimeMillis();
+            System.out.printf("1st: %d, 2nd: %d%n", t1 - t0, t2 - t1);
+            System.out.println("parse virusnetwork.json finish");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                strMap.put(jsonObject1.get("@id").toString(), jsonObject1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        System.out.println("2");
     }
 }
